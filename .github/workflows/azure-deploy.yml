@@ -6,25 +6,35 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: windows-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Set up .NET
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.x'
+          dotnet-version: '8.0' # Cambia a la versión de .NET que estás utilizando
 
-      - name: Build
-        run: dotnet build --configuration Release
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
 
+      # Build the application
+      - name: Build the application
+        run: dotnet build --configuration Release --no-restore
+
+      # Publish the application
+      - name: Publish the application
+        run: dotnet publish --configuration Release --output D:\a\MyMvcApp-Contact-Databse-Application\MyMvcApp-Contact-Databse-Application\bin\Release\net8.0\MyMvcApp
+
+      # Upload artifact for deployment
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: |
-            **/bin/Release/
-            **/publish/
+          path: D:\a\MyMvcApp-Contact-Databse-Application\MyMvcApp-Contact-Databse-Application\bin\Release\net8.0\MyMvcApp
