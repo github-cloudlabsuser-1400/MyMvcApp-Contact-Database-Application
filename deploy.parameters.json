@@ -3,16 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "value": "East US"
+      "value": "West US 2"
     },
     "appServicePlanName": {
-      "value": "myAppServicePlan"
+      "value": "myAppServicePlan3"
     },
     "webAppName": {
-      "value": "myMvcApp"
+      "value": "myMvcApp3"
     },
     "storageAccountName": {
-      "value": "mymvcappstorage"
+      "value": "mymvcappstorage3"
     }
   }
 }
